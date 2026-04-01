@@ -456,12 +456,17 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
 
+    const SHEETS_URL = 'https://script.google.com/a/macros/pedrochafim.com.br/s/AKfycbxcCfB5o0tJ-4U5c_z3NxnbB8T93ScR-0-sFNX2a2CVLucQirfmTaneaC8KUpMkFccAXQ/exec';
+
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
       const btn = form.querySelector('.btn-submit');
       const nameInput = form.querySelector('input[type="text"]');
       const telInput = form.querySelector('input[type="tel"]');
+      const emailInput = form.querySelector('input[type="email"]');
+      const servicoInput = form.querySelector('select');
+      const mensagemInput = form.querySelector('textarea');
 
       // Reset errors
       [nameInput, telInput].forEach(el => {
@@ -497,7 +502,21 @@
       btn.style.cursor = 'not-allowed';
       btn.textContent = 'Enviando...';
 
-      setTimeout(() => {
+      const payload = {
+        nome: nameInput.value.trim(),
+        telefone: telInput.value.trim(),
+        email: emailInput.value.trim(),
+        servico: servicoInput.value,
+        mensagem: mensagemInput.value.trim()
+      };
+
+      fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
         btn.textContent = '✓ Mensagem enviada!';
         btn.style.background = '#6B5A8A';
         btn.style.opacity = '1';
@@ -513,7 +532,18 @@
           });
           form.querySelectorAll('.field-error').forEach(el => el.remove());
         }, 2500);
-      }, 1500);
+      })
+      .catch(() => {
+        btn.textContent = 'Erro ao enviar. Tente novamente.';
+        btn.style.background = '#E05C6A';
+        btn.style.opacity = '1';
+        setTimeout(() => {
+          btn.textContent = 'Enviar Mensagem →';
+          btn.style.background = '';
+          btn.style.cursor = '';
+          btn.disabled = false;
+        }, 3000);
+      });
     }
   </script>
 
