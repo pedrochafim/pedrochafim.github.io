@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18056791803"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18056791803"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'AW-18056791803');
-  
-  gtag('config', 'G-TJDGWBPL88');
+    gtag('config', 'AW-18056791803');
+    gtag('config', 'G-TJDGWBPL88');
+  </script>
+
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18056791803/MyA2CPfYrJQcEPuNk6JD',
+          'value': 1.0,
+          'currency': 'BRL',
+          'event_callback': callback
+      });
+      return false;
+    }
+  </script>
+</head>
+
 </script>
   <meta charset="UTF-8" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%231A1226'/><text x='50' y='67' font-family='Georgia,serif' font-size='38' font-weight='600' fill='%23C5A059' text-anchor='middle' letter-spacing='-1'>PC</text></svg>">
@@ -557,4 +575,10 @@
 
   <script>
     function copyEmail() {
-      navigator.clipboard.writeText('pedroc
+        
+        navigator.clipboard.writeText('contato@pedrochafim.com.br');
+        
+        
+        alert('E-mail copiado com sucesso!');
+    }
+</script>
